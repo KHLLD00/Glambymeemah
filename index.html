@@ -376,6 +376,71 @@
   .invitation .btn-solid{background:var(--wine);color:var(--paper);}
   .invitation .btn-solid:hover{background:#5e1c2a;}
 
+  /* ---------- Order form (inside invitation) ---------- */
+  .order-divider{
+    display:flex;align-items:center;gap:0.9rem;
+    max-width:400px;margin:2.6rem auto 2rem;
+    color:var(--wine-soft);font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;
+  }
+  .order-divider::before, .order-divider::after{
+    content:"";flex:1;height:1px;background:rgba(74,20,32,0.2);
+  }
+  .order-form{max-width:400px;margin:0 auto;text-align:left;}
+  .order-field{margin-bottom:1.1rem;}
+  .order-field label{
+    display:block;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--wine-soft);margin-bottom:0.4rem;
+  }
+  .order-field input[type=text], .order-field input[type=tel], .order-field input[type=date], .order-field textarea{
+    width:100%;padding:0.7rem 0.85rem;
+    border:1px solid rgba(74,20,32,0.28);border-radius:2px;
+    background:#fff;color:var(--wine);
+    font-family:'Jost',sans-serif;font-size:0.9rem;
+  }
+  .order-field input:focus, .order-field textarea:focus{
+    outline:none;border-color:var(--gold);
+  }
+  .order-field textarea{resize:vertical;min-height:64px;}
+  .order-services{display:flex;flex-direction:column;gap:0.55rem;}
+  .order-service{
+    display:flex;align-items:center;justify-content:space-between;gap:0.6rem;
+    padding:0.65rem 0.85rem;border:1px solid rgba(74,20,32,0.22);border-radius:2px;
+    cursor:pointer;transition:border-color .2s ease, background .2s ease;
+  }
+  .order-service:hover{border-color:var(--gold);}
+  .order-service.checked{border-color:var(--gold);background:rgba(201,162,75,0.1);}
+  .order-service input{display:none;}
+  .order-service .svc-name{
+    font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--wine);
+  }
+  .order-service .svc-price{
+    font-size:0.82rem;color:var(--wine-soft);white-space:nowrap;
+  }
+  .order-form .btn{width:100%;justify-content:center;}
+  .order-msg{
+    font-size:0.8rem;color:#a5622c;margin-top:0.7rem;min-height:1.1rem;text-align:center;
+  }
+
+  .order-review{max-width:400px;margin:0 auto;text-align:left;}
+  .review-lines{
+    border:1px solid rgba(74,20,32,0.22);border-radius:2px;
+    padding:1.1rem 1.2rem;margin-bottom:1.3rem;
+  }
+  .review-line{
+    display:flex;justify-content:space-between;gap:1rem;
+    padding:0.5rem 0;border-bottom:1px dashed rgba(74,20,32,0.18);
+    font-size:0.88rem;color:var(--wine);
+  }
+  .review-line:last-child{border-bottom:none;}
+  .review-line span:first-child{color:var(--wine-soft);}
+  .review-total{
+    display:flex;justify-content:space-between;
+    font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.15rem;
+    color:var(--wine);padding-top:0.7rem;margin-top:0.3rem;border-top:1px solid rgba(74,20,32,0.25);
+  }
+  .order-review .cta-row{flex-direction:column;gap:0.7rem;}
+  .order-review .btn-ink{border-color:var(--wine-soft);}
+
   /* ---------- Footer ---------- */
   footer{
     text-align:center;
@@ -393,6 +458,15 @@
   }
   .social-row a:hover{color:var(--gold-soft);border-color:var(--gold-soft);}
   footer .fine{font-size:0.7rem;color:rgba(203,185,168,0.55);letter-spacing:0.04em;}
+  footer .credit{
+    font-size:0.7rem;color:rgba(203,185,168,0.55);letter-spacing:0.04em;
+    margin-top:0.8rem;
+  }
+  footer .credit a{
+    color:var(--gold-soft);border-bottom:1px solid transparent;
+    transition:border-color .2s ease;
+  }
+  footer .credit a:hover{border-color:var(--gold-soft);}
 </style>
 </head>
 <body>
@@ -534,6 +608,76 @@
         Follow on Instagram
       </a>
     </div>
+
+    <div class="order-divider">or fill in your details</div>
+
+    <form class="order-form" id="order-form">
+      <div class="order-field">
+        <label for="ord-name">Your Name</label>
+        <input type="text" id="ord-name" placeholder="e.g. Amaka Bello">
+      </div>
+      <div class="order-field">
+        <label for="ord-phone">Phone Number</label>
+        <input type="tel" id="ord-phone" placeholder="080...">
+      </div>
+      <div class="order-field">
+        <label for="ord-date">Preferred Date</label>
+        <input type="date" id="ord-date">
+      </div>
+      <div class="order-field">
+        <label>Service(s)</label>
+        <div class="order-services">
+          <label class="order-service" data-name="Studio Glam" data-price="20000">
+            <input type="checkbox">
+            <span class="svc-name">Studio Glam</span>
+            <span class="svc-price">₦20,000</span>
+          </label>
+          <label class="order-service" data-name="Owambe Glam" data-price="25000">
+            <input type="checkbox">
+            <span class="svc-name">Owambe Glam</span>
+            <span class="svc-price">₦25,000</span>
+          </label>
+          <label class="order-service" data-name="Pre-Wedding Glam" data-price="40000">
+            <input type="checkbox">
+            <span class="svc-name">Pre-Wedding Glam</span>
+            <span class="svc-price">₦40,000</span>
+          </label>
+          <label class="order-service" data-name="Naming Ceremony" data-price="30000">
+            <input type="checkbox">
+            <span class="svc-name">Naming Ceremony</span>
+            <span class="svc-price">₦30,000</span>
+          </label>
+          <label class="order-service" data-name="Home Service" data-price="30000">
+            <input type="checkbox">
+            <span class="svc-name">Home Service</span>
+            <span class="svc-price">₦30,000</span>
+          </label>
+        </div>
+      </div>
+      <div class="order-field">
+        <label for="ord-location">Location (optional)</label>
+        <input type="text" id="ord-location" placeholder="Studio, or your address for home service">
+      </div>
+      <div class="order-field">
+        <label for="ord-notes">Notes (optional)</label>
+        <textarea id="ord-notes" placeholder="Anything else glamby_meemah should know"></textarea>
+      </div>
+      <button type="submit" class="btn btn-ink">Review Booking</button>
+      <p class="order-msg" id="order-msg"></p>
+    </form>
+
+    <div class="order-review" id="order-review" style="display:none;">
+      <p class="eyebrow" style="text-align:center;">Please Confirm</p>
+      <h3 style="text-align:center;">Does this look right?</h3>
+      <div class="review-lines" id="review-lines"></div>
+      <div class="cta-row">
+        <a class="btn btn-solid" id="review-send" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.45 1.28 4.9L2 22l5.25-1.28A9.96 9.96 0 0 0 12.04 22c5.52 0 10-4.48 10-10s-4.48-10-10-10zm0 18.2c-1.6 0-3.1-.44-4.4-1.2l-.32-.19-3.1.76.78-3.02-.2-.32A8.18 8.18 0 0 1 3.82 12c0-4.53 3.69-8.2 8.22-8.2 4.53 0 8.2 3.67 8.2 8.2 0 4.53-3.67 8.2-8.2 8.2zm4.5-6.13c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.12-.16.25-.64.8-.78.96-.15.16-.29.18-.54.06-.25-.12-1.06-.39-2.02-1.24-.75-.66-1.25-1.48-1.4-1.73-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.24-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.42.06-.64.31-.22.25-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.13 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.46-.6 1.66-1.18.2-.58.2-1.08.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg>
+          Confirm &amp; Send via WhatsApp
+        </a>
+        <a class="btn btn-ink" href="#" id="review-edit">Edit Details</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -545,6 +689,7 @@
     <a href="https://www.tiktok.com/@meemah_oyeeza" target="_blank" rel="noopener">TikTok @meemah_oyeeza</a>
   </div>
   <p class="fine">Studio &amp; home service · Bookings confirmed with deposit</p>
+  <p class="credit">Designed by <a href="https://khalid-usman.vercel.app/" target="_blank" rel="noopener">Khaleed</a></p>
 </footer>
 
 <script>
@@ -567,6 +712,93 @@
     });
   }, {threshold:0.15});
   els.forEach(el=>io.observe(el));
+
+  // ---------- Order form: checkbox highlight ----------
+  document.querySelectorAll('.order-service').forEach(row=>{
+    const input = row.querySelector('input[type=checkbox]');
+    input.addEventListener('change', ()=>{
+      row.classList.toggle('checked', input.checked);
+    });
+  });
+
+  // ---------- Order form: review + WhatsApp send ----------
+  const orderForm = document.getElementById('order-form');
+  const orderReview = document.getElementById('order-review');
+  const orderMsg = document.getElementById('order-msg');
+  const reviewLines = document.getElementById('review-lines');
+  const reviewSend = document.getElementById('review-send');
+  const reviewEdit = document.getElementById('review-edit');
+
+  function fmtNaira(n){ return '₦' + n.toLocaleString(); }
+  function fmtDate(iso){
+    if(!iso) return '';
+    const d = new Date(iso + 'T00:00:00');
+    return d.toLocaleDateString('en-NG', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+  }
+
+  orderForm.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const name = document.getElementById('ord-name').value.trim();
+    const phone = document.getElementById('ord-phone').value.trim();
+    const date = document.getElementById('ord-date').value;
+    const location = document.getElementById('ord-location').value.trim();
+    const notes = document.getElementById('ord-notes').value.trim();
+    const checked = Array.from(document.querySelectorAll('.order-service input:checked'))
+      .map(input => input.closest('.order-service'));
+
+    if(!name || !phone || !date){
+      orderMsg.textContent = 'Please fill in your name, phone, and preferred date.';
+      return;
+    }
+    if(checked.length === 0){
+      orderMsg.textContent = 'Please select at least one service.';
+      return;
+    }
+    orderMsg.textContent = '';
+
+    let total = 0;
+    const services = checked.map(row=>{
+      const svcName = row.dataset.name;
+      const price = parseInt(row.dataset.price, 10);
+      total += price;
+      return {name: svcName, price};
+    });
+
+    // Build review card
+    let lines = '';
+    lines += `<div class="review-line"><span>Name</span><span>${name}</span></div>`;
+    lines += `<div class="review-line"><span>Phone</span><span>${phone}</span></div>`;
+    lines += `<div class="review-line"><span>Date</span><span>${fmtDate(date)}</span></div>`;
+    services.forEach(s=>{
+      lines += `<div class="review-line"><span>${s.name}</span><span>${fmtNaira(s.price)}</span></div>`;
+    });
+    if(location) lines += `<div class="review-line"><span>Location</span><span>${location}</span></div>`;
+    if(notes) lines += `<div class="review-line"><span>Notes</span><span>${notes}</span></div>`;
+    lines += `<div class="review-total"><span>Total</span><span>${fmtNaira(total)}</span></div>`;
+    reviewLines.innerHTML = lines;
+
+    // Build WhatsApp message to match the review exactly
+    let msg = `Hi glamby_meemah! I'd like to book a glam session.\n\n`;
+    msg += `Name: ${name}\nPhone: ${phone}\nDate: ${fmtDate(date)}\n\n`;
+    msg += `Service(s):\n`;
+    services.forEach(s=>{ msg += `- ${s.name} (${fmtNaira(s.price)})\n`; });
+    msg += `Total: ${fmtNaira(total)}\n`;
+    if(location) msg += `\nLocation: ${location}\n`;
+    if(notes) msg += `\nNotes: ${notes}\n`;
+
+    reviewSend.href = `https://wa.me/2348126188644?text=${encodeURIComponent(msg)}`;
+
+    orderForm.style.display = 'none';
+    orderReview.style.display = 'block';
+    orderReview.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+
+  reviewEdit.addEventListener('click', (e)=>{
+    e.preventDefault();
+    orderReview.style.display = 'none';
+    orderForm.style.display = 'block';
+    orderForm.scrollIntoView({behavior:'smooth', block:'center'});
+  });
 </script>
 
 </body>
