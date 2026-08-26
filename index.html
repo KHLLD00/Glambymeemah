@@ -266,6 +266,16 @@
   }
   .service-row{flex-wrap:wrap;}
 
+  .menu-subhead{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:1.15rem;
+    color:var(--gold-soft);
+    letter-spacing:0.03em;
+    margin:2.4rem 0 0.6rem;
+  }
+  .menu-subhead:first-child{margin-top:0;}
+
   .notes{
     margin-top:2.6rem;
     display:grid;
@@ -417,6 +427,32 @@
     font-size:0.82rem;color:var(--wine-soft);white-space:nowrap;
   }
   .order-form .btn{width:100%;justify-content:center;}
+
+  .order-categories{display:flex;flex-direction:column;gap:0.7rem;}
+  .order-category{border:1px solid rgba(74,20,32,0.22);border-radius:2px;overflow:hidden;}
+  .order-category-toggle{
+    width:100%;display:flex;align-items:center;justify-content:space-between;
+    gap:0.6rem;padding:0.85rem 1rem;
+    background:none;border:none;cursor:pointer;text-align:left;
+    font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--wine);
+  }
+  .order-category-toggle .cat-count{
+    font-family:'Jost',sans-serif;font-size:0.72rem;letter-spacing:0.04em;
+    color:var(--gold-soft);margin-left:0.5rem;
+  }
+  .order-category-toggle .chev{
+    font-size:0.8rem;color:var(--wine-soft);transition:transform 0.25s ease;
+    margin-left:auto;flex-shrink:0;
+  }
+  .order-category.open .order-category-toggle .chev{transform:rotate(180deg);}
+  .order-category-panel{
+    max-height:0;overflow:hidden;transition:max-height 0.3s ease;
+  }
+  .order-category.open .order-category-panel{max-height:600px;}
+  .order-services{
+    display:flex;flex-direction:column;gap:0.5rem;
+    padding:0 0.85rem 0.85rem;
+  }
   .order-msg{
     font-size:0.8rem;color:#a5622c;margin-top:0.7rem;min-height:1.1rem;text-align:center;
   }
@@ -489,6 +525,9 @@
   <img class="hero-img" src="hero-07.jpg" alt="Glam makeup by glamby_meemah, bold pink heart eyeshadow look against a lilac backdrop">
   <img class="hero-img" src="hero-08.jpg" alt="Glam makeup by glamby_meemah, model in a gold and blue ankara headwrap with a soft smoky eye">
   <img class="hero-img" src="hero-09.jpg" alt="Glam makeup by glamby_meemah, model in a wine velvet headwrap with green-gold smoky eye and henna-adorned hands">
+  <img class="hero-img" src="hero-10.jpg" alt="Glam makeup by glamby_meemah, model in a pink velvet headwrap with soft smoky eye and pearl earrings">
+  <img class="hero-img" src="hero-11.jpg" alt="Glam makeup by glamby_meemah, bride in a blue aso-oke gele and beaded coral necklaces">
+  <img class="hero-img" src="hero-12.jpg" alt="Glam makeup by glamby_meemah, soft everyday glam with sleek updo and pink top">
   <div class="hero-scrim"></div>
   <p class="hero-spine">Kogi State &amp; Beyond — Studio &amp; Home Service</p>
   <div class="hero-content">
@@ -519,6 +558,7 @@
 
   <div class="menu-frame reveal">
     <div class="service-list">
+      <p class="menu-subhead">Glam</p>
       <div class="service-row">
         <span class="service-name">Studio Glam</span>
         <span class="leader"></span>
@@ -548,6 +588,50 @@
         <span class="leader"></span>
         <span class="service-price">₦30,000</span>
         <span class="service-sub">Glam artist comes to you</span>
+      </div>
+
+      <p class="menu-subhead">Bridal</p>
+      <div class="service-row">
+        <span class="service-name">Introduction Glam</span>
+        <span class="leader"></span>
+        <span class="service-price">₦35,000</span>
+      </div>
+      <div class="service-row">
+        <span class="service-name">Traditional Wedding Glam</span>
+        <span class="leader"></span>
+        <span class="service-price">₦80,000</span>
+      </div>
+      <div class="service-row">
+        <span class="service-name">White Wedding Glam</span>
+        <span class="leader"></span>
+        <span class="service-price">₦80,000</span>
+      </div>
+      <div class="service-row">
+        <span class="service-name">Discounted 2-Day Bridal</span>
+        <span class="leader"></span>
+        <span class="service-price">₦130,000</span>
+      </div>
+      <div class="service-row">
+        <span class="service-name">Discounted 3-Day Bridal</span>
+        <span class="leader"></span>
+        <span class="service-price">₦180,000</span>
+      </div>
+
+      <p class="menu-subhead">Gele Services</p>
+      <div class="service-row">
+        <span class="service-name">1 Bridal Gele</span>
+        <span class="leader"></span>
+        <span class="service-price">₦15,000</span>
+      </div>
+      <div class="service-row">
+        <span class="service-name">2 Bridal Gele</span>
+        <span class="leader"></span>
+        <span class="service-price">₦30,000</span>
+      </div>
+      <div class="service-row">
+        <span class="service-name">3 Bridal Gele</span>
+        <span class="leader"></span>
+        <span class="service-price">₦45,000</span>
       </div>
     </div>
 
@@ -626,32 +710,104 @@
       </div>
       <div class="order-field">
         <label>Service(s)</label>
-        <div class="order-services">
-          <label class="order-service" data-name="Studio Glam" data-price="20000">
-            <input type="checkbox">
-            <span class="svc-name">Studio Glam</span>
-            <span class="svc-price">₦20,000</span>
-          </label>
-          <label class="order-service" data-name="Owambe Glam" data-price="25000">
-            <input type="checkbox">
-            <span class="svc-name">Owambe Glam</span>
-            <span class="svc-price">₦25,000</span>
-          </label>
-          <label class="order-service" data-name="Pre-Wedding Glam" data-price="40000">
-            <input type="checkbox">
-            <span class="svc-name">Pre-Wedding Glam</span>
-            <span class="svc-price">₦40,000</span>
-          </label>
-          <label class="order-service" data-name="Naming Ceremony" data-price="30000">
-            <input type="checkbox">
-            <span class="svc-name">Naming Ceremony</span>
-            <span class="svc-price">₦30,000</span>
-          </label>
-          <label class="order-service" data-name="Home Service" data-price="30000">
-            <input type="checkbox">
-            <span class="svc-name">Home Service</span>
-            <span class="svc-price">₦30,000</span>
-          </label>
+        <div class="order-categories">
+          <div class="order-category">
+            <button type="button" class="order-category-toggle">
+              Glam <span class="cat-count"></span>
+              <span class="chev">▾</span>
+            </button>
+            <div class="order-category-panel">
+              <div class="order-services">
+                <label class="order-service" data-name="Studio Glam" data-price="20000">
+                  <input type="checkbox">
+                  <span class="svc-name">Studio Glam</span>
+                  <span class="svc-price">₦20,000</span>
+                </label>
+                <label class="order-service" data-name="Owambe Glam" data-price="25000">
+                  <input type="checkbox">
+                  <span class="svc-name">Owambe Glam</span>
+                  <span class="svc-price">₦25,000</span>
+                </label>
+                <label class="order-service" data-name="Pre-Wedding Glam" data-price="40000">
+                  <input type="checkbox">
+                  <span class="svc-name">Pre-Wedding Glam</span>
+                  <span class="svc-price">₦40,000</span>
+                </label>
+                <label class="order-service" data-name="Naming Ceremony" data-price="30000">
+                  <input type="checkbox">
+                  <span class="svc-name">Naming Ceremony</span>
+                  <span class="svc-price">₦30,000</span>
+                </label>
+                <label class="order-service" data-name="Home Service" data-price="30000">
+                  <input type="checkbox">
+                  <span class="svc-name">Home Service</span>
+                  <span class="svc-price">₦30,000</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="order-category">
+            <button type="button" class="order-category-toggle">
+              Bridal <span class="cat-count"></span>
+              <span class="chev">▾</span>
+            </button>
+            <div class="order-category-panel">
+              <div class="order-services">
+                <label class="order-service" data-name="Introduction Glam" data-price="35000">
+                  <input type="checkbox">
+                  <span class="svc-name">Introduction Glam</span>
+                  <span class="svc-price">₦35,000</span>
+                </label>
+                <label class="order-service" data-name="Traditional Wedding Glam" data-price="80000">
+                  <input type="checkbox">
+                  <span class="svc-name">Traditional Wedding Glam</span>
+                  <span class="svc-price">₦80,000</span>
+                </label>
+                <label class="order-service" data-name="White Wedding Glam" data-price="80000">
+                  <input type="checkbox">
+                  <span class="svc-name">White Wedding Glam</span>
+                  <span class="svc-price">₦80,000</span>
+                </label>
+                <label class="order-service" data-name="Discounted 2-Day Bridal" data-price="130000">
+                  <input type="checkbox">
+                  <span class="svc-name">Discounted 2-Day Bridal</span>
+                  <span class="svc-price">₦130,000</span>
+                </label>
+                <label class="order-service" data-name="Discounted 3-Day Bridal" data-price="180000">
+                  <input type="checkbox">
+                  <span class="svc-name">Discounted 3-Day Bridal</span>
+                  <span class="svc-price">₦180,000</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="order-category">
+            <button type="button" class="order-category-toggle">
+              Gele Services <span class="cat-count"></span>
+              <span class="chev">▾</span>
+            </button>
+            <div class="order-category-panel">
+              <div class="order-services">
+                <label class="order-service" data-name="1 Bridal Gele" data-price="15000">
+                  <input type="checkbox">
+                  <span class="svc-name">1 Bridal Gele</span>
+                  <span class="svc-price">₦15,000</span>
+                </label>
+                <label class="order-service" data-name="2 Bridal Gele" data-price="30000">
+                  <input type="checkbox">
+                  <span class="svc-name">2 Bridal Gele</span>
+                  <span class="svc-price">₦30,000</span>
+                </label>
+                <label class="order-service" data-name="3 Bridal Gele" data-price="45000">
+                  <input type="checkbox">
+                  <span class="svc-name">3 Bridal Gele</span>
+                  <span class="svc-price">₦45,000</span>
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="order-field">
@@ -713,11 +869,27 @@
   }, {threshold:0.15});
   els.forEach(el=>io.observe(el));
 
+  // ---------- Order form: category accordion ----------
+  document.querySelectorAll('.order-category').forEach(cat=>{
+    const toggle = cat.querySelector('.order-category-toggle');
+    toggle.addEventListener('click', ()=>{
+      cat.classList.toggle('open');
+    });
+  });
+
+  function updateCategoryCount(row){
+    const cat = row.closest('.order-category');
+    const count = cat.querySelectorAll('.order-service input:checked').length;
+    const countEl = cat.querySelector('.cat-count');
+    countEl.textContent = count > 0 ? `(${count} selected)` : '';
+  }
+
   // ---------- Order form: checkbox highlight ----------
   document.querySelectorAll('.order-service').forEach(row=>{
     const input = row.querySelector('input[type=checkbox]');
     input.addEventListener('change', ()=>{
       row.classList.toggle('checked', input.checked);
+      updateCategoryCount(row);
     });
   });
 
