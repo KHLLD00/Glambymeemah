@@ -137,6 +137,13 @@
     transition:opacity 1.8s ease;
   }
   .hero-img.is-active{opacity:1;}
+
+  /* Desktop framing: keep the full-bleed hero while prioritising faces and headwear. */
+  @media (min-width:761px){
+    .hero{min-height:clamp(720px, 100svh, 980px);}
+    .hero-img{object-position:50% 22%;}
+  }
+
   .hero-scrim{
     position:absolute;inset:0;
     background:
