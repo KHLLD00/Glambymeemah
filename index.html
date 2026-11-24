@@ -138,31 +138,48 @@
   }
   .hero-img.is-active{opacity:1;}
 
-  /* Desktop: show the complete portrait over a softly blurred full-bleed backdrop. */
-  .hero-img-backdrop{display:none;}
+  /* Desktop: editorial split-screen hero; the portrait carousel stays on the left. */
   @media (min-width:761px){
-    .hero{min-height:clamp(720px, 100svh, 980px);background:#171113;}
+    .hero{
+      min-height:100svh;
+      display:grid;
+      grid-template-columns:minmax(0, 1.12fr) minmax(380px, .88fr);
+      align-items:stretch;
+      justify-content:stretch;
+      padding:0;
+      text-align:left;
+      background:var(--ink);
+    }
     .hero-img{
-      z-index:1;
-      object-fit:contain;
-      object-position:center;
+      z-index:0;
+      inset:0 auto 0 0;
+      width:56%;
+      height:100%;
+      object-fit:cover;
+      object-position:center 20%;
       filter:saturate(1.05);
     }
-    .hero-img-backdrop{
-      display:block;
-      position:absolute;
-      inset:-24px;
-      width:calc(100% + 48px);
-      height:calc(100% + 48px);
-      object-fit:cover;
-      object-position:center 22%;
-      filter:blur(22px) brightness(.42) saturate(1.1);
-      opacity:0;
-      transition:opacity 1.8s ease;
-      z-index:0;
-      pointer-events:none;
+    .hero-scrim{
+      z-index:1;
+      width:56%;
+      background:linear-gradient(90deg, rgba(13,10,11,0) 72%, rgba(13,10,11,.28) 100%),
+        linear-gradient(0deg, rgba(13,10,11,.28), transparent 28%);
     }
-    .hero-img-backdrop.is-active{opacity:1;}
+    .hero-content{
+      grid-column:2;
+      grid-row:1;
+      align-self:center;
+      justify-self:stretch;
+      width:100%;
+      max-width:620px;
+      padding:7rem clamp(2.5rem,5vw,5.5rem) 5rem clamp(2rem,4vw,4.5rem);
+      margin-left:0;
+    }
+    .hero-eyebrow{font-size:.7rem;letter-spacing:.28em;}
+    .hero h1{font-size:clamp(3.3rem,5.2vw,5.4rem);}
+    .hero p.tagline{font-size:clamp(1.1rem,1.55vw,1.35rem);line-height:1.55;max-width:500px;}
+    .hero .cta-row{justify-content:flex-start;}
+    .hero-spine{right:auto;left:clamp(.8rem,2vw,1.8rem);transform:translateY(-50%);writing-mode:vertical-rl;color:rgba(242,233,222,.78);text-shadow:0 1px 8px rgba(0,0,0,.5);}
   }
 
   .hero-scrim{
@@ -1017,27 +1034,13 @@
   const heroImgs = document.querySelectorAll('.hero-img');
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // On desktop, use a blurred copy to fill the sides while keeping each portrait uncropped.
-  heroImgs.forEach((img)=>{
-    const backdrop = img.cloneNode();
-    backdrop.className = 'hero-img-backdrop' + (img.classList.contains('is-active') ? ' is-active' : '');
-    backdrop.removeAttribute('fetchpriority');
-    backdrop.removeAttribute('loading');
-    backdrop.setAttribute('aria-hidden','true');
-    backdrop.alt = '';
-    img.parentNode.insertBefore(backdrop,img);
-    img.dataset.backdrop = 'ready';
-  });
-  const heroBackdrops = document.querySelectorAll('.hero-img-backdrop');
-
+  // Keep the portrait carousel running on both mobile and desktop.
   if(heroImgs.length > 1 && !prefersReducedMotion){
     let heroIndex = 0;
     setInterval(()=>{
       heroImgs[heroIndex].classList.remove('is-active');
-      heroBackdrops[heroIndex].classList.remove('is-active');
       heroIndex = (heroIndex + 1) % heroImgs.length;
       heroImgs[heroIndex].classList.add('is-active');
-      heroBackdrops[heroIndex].classList.add('is-active');
     }, 4200);
   }
 
